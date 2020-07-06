@@ -60,11 +60,10 @@ SatisMeter.prototype.loaded = function() {
  */
 
 SatisMeter.prototype.identify = function(identify) {
-  window.satismeter({
+  window.satismeter('identify', {
     writeKey: this.options.apiKey || this.options.token,
     userId: identify.userId(),
-    traits: this.analytics.user().traits(),
-    type: 'identify'
+    traits: this.analytics.user().traits()
   });
 };
 

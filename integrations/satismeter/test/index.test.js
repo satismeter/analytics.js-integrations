@@ -69,48 +69,44 @@ describe('SatisMeter', function() {
 
       it('should send apiKey and user id', function() {
         analytics.identify('id');
-        analytics.called(window.satismeter, {
+        analytics.called(window.satismeter, 'identify', {
           writeKey: options.apiKey,
           userId: 'id',
-          traits: {},
-          type: 'identify'
+          traits: {}
         });
       });
 
       it('should send email', function() {
         analytics.identify('id', { email: 'email@example.com' });
-        analytics.called(window.satismeter, {
+        analytics.called(window.satismeter, 'identify', {
           writeKey: options.apiKey,
           userId: 'id',
           traits: {
             email: 'email@example.com'
-          },
-          type: 'identify'
+          }
         });
       });
 
       it('should send user name', function() {
         analytics.identify('id', { name: 'john doe' });
-        analytics.called(window.satismeter, {
+        analytics.called(window.satismeter, 'identify', {
           writeKey: options.apiKey,
           userId: 'id',
           traits: {
             name: 'john doe'
-          },
-          type: 'identify'
+          }
         });
       });
 
       it('should send signUpDate', function() {
         var now = new Date();
         analytics.identify('id', { createdAt: now });
-        analytics.called(window.satismeter, {
+        analytics.called(window.satismeter, 'identify', {
           writeKey: options.apiKey,
           userId: 'id',
           traits: {
             createdAt: now
-          },
-          type: 'identify'
+          }
         });
       });
 
@@ -121,7 +117,7 @@ describe('SatisMeter', function() {
           },
           language: 'en'
         });
-        analytics.called(window.satismeter, {
+        analytics.called(window.satismeter, 'identify', {
           writeKey: options.apiKey,
           userId: 'id',
           traits: {
@@ -129,8 +125,7 @@ describe('SatisMeter', function() {
               FOLLOWUP: 'What can we improve'
             },
             language: 'en'
-          },
-          type: 'identify'
+          }
         });
       });
     });
@@ -215,50 +210,46 @@ describe('SatisMeter - legacy setup', function() {
         analytics.stub(window, 'satismeter');
       });
 
-      it('should send token and user id', function() {
+      it('should send apiKey and user id', function() {
         analytics.identify('id');
-        analytics.called(window.satismeter, {
+        analytics.called(window.satismeter, 'identify', {
           writeKey: options.token,
           userId: 'id',
-          traits: {},
-          type: 'identify'
+          traits: {}
         });
       });
 
       it('should send email', function() {
         analytics.identify('id', { email: 'email@example.com' });
-        analytics.called(window.satismeter, {
+        analytics.called(window.satismeter, 'identify', {
           writeKey: options.token,
           userId: 'id',
           traits: {
             email: 'email@example.com'
-          },
-          type: 'identify'
+          }
         });
       });
 
       it('should send user name', function() {
         analytics.identify('id', { name: 'john doe' });
-        analytics.called(window.satismeter, {
+        analytics.called(window.satismeter, 'identify', {
           writeKey: options.token,
           userId: 'id',
           traits: {
             name: 'john doe'
-          },
-          type: 'identify'
+          }
         });
       });
 
       it('should send signUpDate', function() {
         var now = new Date();
         analytics.identify('id', { createdAt: now });
-        analytics.called(window.satismeter, {
+        analytics.called(window.satismeter, 'identify', {
           writeKey: options.token,
           userId: 'id',
           traits: {
             createdAt: now
-          },
-          type: 'identify'
+          }
         });
       });
 
@@ -269,7 +260,7 @@ describe('SatisMeter - legacy setup', function() {
           },
           language: 'en'
         });
-        analytics.called(window.satismeter, {
+        analytics.called(window.satismeter, 'identify', {
           writeKey: options.token,
           userId: 'id',
           traits: {
@@ -277,8 +268,7 @@ describe('SatisMeter - legacy setup', function() {
               FOLLOWUP: 'What can we improve'
             },
             language: 'en'
-          },
-          type: 'identify'
+          }
         });
       });
     });
