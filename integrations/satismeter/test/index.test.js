@@ -142,7 +142,6 @@ describe('SatisMeter', function() {
           planPrice: 2000
         });
         analytics.called(window.satismeter, 'track', {
-          writeKey: options.apiKey,
           userId: 'id',
           event: 'User Subscribed',
           properties: {
@@ -194,7 +193,6 @@ describe('SatisMeter', function() {
           employees: 2000
         });
         analytics.called(window.satismeter, 'group', {
-          writeKey: options.apiKey,
           userId: 'id',
           groupId: 'groupId',
           traits: {
@@ -344,7 +342,6 @@ describe('SatisMeter - legacy setup', function() {
           planPrice: 2000
         });
         analytics.called(window.satismeter, 'track', {
-          writeKey: options.token,
           userId: 'id',
           event: 'User Subscribed',
           properties: {
@@ -396,7 +393,6 @@ describe('SatisMeter - legacy setup', function() {
           employees: 2000
         });
         analytics.called(window.satismeter, 'group', {
-          writeKey: options.token,
           userId: 'id',
           groupId: 'groupId',
           traits: {
