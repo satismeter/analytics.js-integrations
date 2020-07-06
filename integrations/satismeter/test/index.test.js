@@ -135,13 +135,26 @@ describe('SatisMeter', function() {
         analytics.stub(window, 'satismeter');
       });
 
-      it('should send apiKey and user id', function() {
+      it('should send page name, category and properties', function() {
         analytics.user().id('id');
-        analytics.page('Pricing');
-        analytics.called(window.satismeter, {
+        analytics.page('Product', 'Pricing', {
+          customProperty: 'Example'
+        });
+        analytics.called(window.satismeter, 'page', {
           writeKey: options.apiKey,
           userId: 'id',
-          type: 'page'
+          name: 'Pricing',
+          category: 'Product',
+          properties: {
+            name: 'Pricing',
+            category: 'Product',
+            path: window.location.pathname,
+            referrer: window.document.referrer,
+            search: window.location.search,
+            title: window.document.title,
+            url: window.location.href,
+            customProperty: 'Example'
+          }
         });
       });
     });
@@ -278,13 +291,26 @@ describe('SatisMeter - legacy setup', function() {
         analytics.stub(window, 'satismeter');
       });
 
-      it('should send token and user id', function() {
+      it('should send page name, category and properties', function() {
         analytics.user().id('id');
-        analytics.page('Pricing');
-        analytics.called(window.satismeter, {
+        analytics.page('Product', 'Pricing', {
+          customProperty: 'Example'
+        });
+        analytics.called(window.satismeter, 'page', {
           writeKey: options.token,
           userId: 'id',
-          type: 'page'
+          name: 'Pricing',
+          category: 'Product',
+          properties: {
+            name: 'Pricing',
+            category: 'Product',
+            path: window.location.pathname,
+            referrer: window.document.referrer,
+            search: window.location.search,
+            title: window.document.title,
+            url: window.location.href,
+            customProperty: 'Example'
+          }
         });
       });
     });

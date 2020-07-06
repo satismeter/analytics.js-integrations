@@ -74,10 +74,12 @@ SatisMeter.prototype.identify = function(identify) {
  * @param {Page} page
  */
 
-SatisMeter.prototype.page = function() {
-  window.satismeter({
+SatisMeter.prototype.page = function(page) {
+  window.satismeter('page', {
     writeKey: this.options.apiKey || this.options.token,
     userId: this.analytics.user().id(),
-    type: 'page'
+    name: page.name(),
+    category: page.category(),
+    properties: page.properties()
   });
 };
