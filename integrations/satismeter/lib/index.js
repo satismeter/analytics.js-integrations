@@ -25,10 +25,19 @@ var SatisMeter = (module.exports = integration('SatisMeter')
 
 SatisMeter.prototype.initialize = function() {
   var self = this;
+  var options = this.options;
   this.load(function() {
-    when(function() {
-      return self.loaded();
-    }, self.ready);
+    when(
+      function() {
+        return self.loaded();
+      },
+      function() {
+        window.satismeter('load', {
+          writeKey: options.apiKey || options.token
+        });
+        self.ready();
+      }
+    );
   });
 };
 
