@@ -130,6 +130,29 @@ describe('SatisMeter', function() {
       });
     });
 
+    describe('#track', function() {
+      beforeEach(function() {
+        analytics.stub(window, 'satismeter');
+      });
+
+      it('should send event name and properties', function() {
+        analytics.user().id('id');
+        analytics.track('User Subscribed', {
+          planId: 'Example Plan',
+          planPrice: 2000
+        });
+        analytics.called(window.satismeter, 'track', {
+          writeKey: options.apiKey,
+          userId: 'id',
+          event: 'User Subscribed',
+          properties: {
+            planId: 'Example Plan',
+            planPrice: 2000
+          }
+        });
+      });
+    });
+
     describe('#page', function() {
       beforeEach(function() {
         analytics.stub(window, 'satismeter');
@@ -154,6 +177,29 @@ describe('SatisMeter', function() {
             title: window.document.title,
             url: window.location.href,
             customProperty: 'Example'
+          }
+        });
+      });
+    });
+
+    describe('#group', function() {
+      beforeEach(function() {
+        analytics.stub(window, 'satismeter');
+      });
+
+      it('should send group id and traits', function() {
+        analytics.user().id('id');
+        analytics.group('groupId', {
+          industry: 'Technology',
+          employees: 2000
+        });
+        analytics.called(window.satismeter, 'group', {
+          writeKey: options.apiKey,
+          userId: 'id',
+          groupId: 'groupId',
+          traits: {
+            industry: 'Technology',
+            employees: 2000
           }
         });
       });
@@ -286,6 +332,29 @@ describe('SatisMeter - legacy setup', function() {
       });
     });
 
+    describe('#track', function() {
+      beforeEach(function() {
+        analytics.stub(window, 'satismeter');
+      });
+
+      it('should send event name and properties', function() {
+        analytics.user().id('id');
+        analytics.track('User Subscribed', {
+          planId: 'Example Plan',
+          planPrice: 2000
+        });
+        analytics.called(window.satismeter, 'track', {
+          writeKey: options.token,
+          userId: 'id',
+          event: 'User Subscribed',
+          properties: {
+            planId: 'Example Plan',
+            planPrice: 2000
+          }
+        });
+      });
+    });
+
     describe('#page', function() {
       beforeEach(function() {
         analytics.stub(window, 'satismeter');
@@ -310,6 +379,29 @@ describe('SatisMeter - legacy setup', function() {
             title: window.document.title,
             url: window.location.href,
             customProperty: 'Example'
+          }
+        });
+      });
+    });
+
+    describe('#group', function() {
+      beforeEach(function() {
+        analytics.stub(window, 'satismeter');
+      });
+
+      it('should send group id and traits', function() {
+        analytics.user().id('id');
+        analytics.group('groupId', {
+          industry: 'Technology',
+          employees: 2000
+        });
+        analytics.called(window.satismeter, 'group', {
+          writeKey: options.token,
+          userId: 'id',
+          groupId: 'groupId',
+          traits: {
+            industry: 'Technology',
+            employees: 2000
           }
         });
       });

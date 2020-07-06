@@ -83,3 +83,35 @@ SatisMeter.prototype.page = function(page) {
     properties: page.properties()
   });
 };
+
+/**
+ * Track.
+ *
+ * @api public
+ * @param {Track} track
+ */
+
+SatisMeter.prototype.track = function(track) {
+  window.satismeter('track', {
+    writeKey: this.options.apiKey || this.options.token,
+    userId: this.analytics.user().id(),
+    event: track.event(),
+    properties: track.properties()
+  });
+};
+
+/**
+ * group.
+ *
+ * @api public
+ * @param {group} group
+ */
+
+SatisMeter.prototype.group = function(group) {
+  window.satismeter('group', {
+    writeKey: this.options.apiKey || this.options.token,
+    userId: this.analytics.user().id(),
+    groupId: group.groupId(),
+    traits: group.properties()
+  });
+};
