@@ -168,7 +168,6 @@ describe('SatisMeter', function() {
           customProperty: 'Example'
         });
         analytics.called(window.satismeter, 'page', {
-          writeKey: options.apiKey,
           userId: 'id',
           name: 'Pricing',
           category: 'Product',
@@ -373,7 +372,6 @@ describe('SatisMeter - legacy setup', function() {
           customProperty: 'Example'
         });
         analytics.called(window.satismeter, 'page', {
-          writeKey: options.token,
           userId: 'id',
           name: 'Pricing',
           category: 'Product',

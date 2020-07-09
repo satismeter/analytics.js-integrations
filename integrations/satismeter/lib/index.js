@@ -77,7 +77,6 @@ SatisMeter.prototype.identify = function(identify) {
 
 SatisMeter.prototype.page = function(page) {
   window.satismeter('page', {
-    writeKey: this.options.apiKey || this.options.token,
     userId: this.analytics.user().id(),
     name: page.name(),
     category: page.category(),
