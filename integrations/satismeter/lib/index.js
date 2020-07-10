@@ -63,6 +63,7 @@ SatisMeter.prototype.identify = function(identify) {
   window.satismeter({
     writeKey: this.options.apiKey || this.options.token,
     userId: identify.userId(),
+    anonymousId: identify.anonymousId(),
     traits: this.analytics.user().traits(),
     type: 'identify'
   });
@@ -78,6 +79,7 @@ SatisMeter.prototype.identify = function(identify) {
 SatisMeter.prototype.page = function(page) {
   window.satismeter('page', {
     userId: this.analytics.user().id(),
+    anonymousId: this.analytics.user().anonymousId(),
     name: page.name(),
     category: page.category(),
     properties: page.properties()
@@ -94,6 +96,7 @@ SatisMeter.prototype.page = function(page) {
 SatisMeter.prototype.track = function(track) {
   window.satismeter('track', {
     userId: this.analytics.user().id(),
+    anonymousId: this.analytics.user().anonymousId(),
     event: track.event(),
     properties: track.properties()
   });
@@ -109,6 +112,7 @@ SatisMeter.prototype.track = function(track) {
 SatisMeter.prototype.group = function(group) {
   window.satismeter('group', {
     userId: this.analytics.user().id(),
+    anonymousId: this.analytics.user().anonymousId(),
     groupId: group.groupId(),
     traits: group.properties()
   });

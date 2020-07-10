@@ -45,6 +45,7 @@ describe('SatisMeter', function() {
     describe('#initialize', function() {
       it('should call #load', function() {
         analytics.initialize();
+
         analytics.called(satismeter.load);
       });
     });
@@ -69,9 +70,12 @@ describe('SatisMeter', function() {
 
       it('should send apiKey and user id', function() {
         analytics.identify('id');
+        var anonymousId = analytics.user().anonymousId();
+
         analytics.called(window.satismeter, {
           writeKey: options.apiKey,
           userId: 'id',
+          anonymousId: anonymousId,
           traits: {},
           type: 'identify'
         });
@@ -79,9 +83,12 @@ describe('SatisMeter', function() {
 
       it('should send email', function() {
         analytics.identify('id', { email: 'email@example.com' });
+        var anonymousId = analytics.user().anonymousId();
+
         analytics.called(window.satismeter, {
           writeKey: options.apiKey,
           userId: 'id',
+          anonymousId: anonymousId,
           traits: {
             email: 'email@example.com'
           },
@@ -91,9 +98,12 @@ describe('SatisMeter', function() {
 
       it('should send user name', function() {
         analytics.identify('id', { name: 'john doe' });
+        var anonymousId = analytics.user().anonymousId();
+
         analytics.called(window.satismeter, {
           writeKey: options.apiKey,
           userId: 'id',
+          anonymousId: anonymousId,
           traits: {
             name: 'john doe'
           },
@@ -104,9 +114,12 @@ describe('SatisMeter', function() {
       it('should send signUpDate', function() {
         var now = new Date();
         analytics.identify('id', { createdAt: now });
+        var anonymousId = analytics.user().anonymousId();
+
         analytics.called(window.satismeter, {
           writeKey: options.apiKey,
           userId: 'id',
+          anonymousId: anonymousId,
           traits: {
             createdAt: now
           },
@@ -121,9 +134,12 @@ describe('SatisMeter', function() {
           },
           language: 'en'
         });
+        var anonymousId = analytics.user().anonymousId();
+
         analytics.called(window.satismeter, {
           writeKey: options.apiKey,
           userId: 'id',
+          anonymousId: anonymousId,
           traits: {
             translation: {
               FOLLOWUP: 'What can we improve'
@@ -142,12 +158,15 @@ describe('SatisMeter', function() {
 
       it('should send event name and properties', function() {
         analytics.user().id('id');
+        analytics.user().anonymousId('anonymousId');
         analytics.track('User Subscribed', {
           planId: 'Example Plan',
           planPrice: 2000
         });
+
         analytics.called(window.satismeter, 'track', {
           userId: 'id',
+          anonymousId: 'anonymousId',
           event: 'User Subscribed',
           properties: {
             planId: 'Example Plan',
@@ -164,11 +183,14 @@ describe('SatisMeter', function() {
 
       it('should send page name, category and properties', function() {
         analytics.user().id('id');
+        analytics.user().anonymousId('anonymousId');
         analytics.page('Product', 'Pricing', {
           customProperty: 'Example'
         });
+
         analytics.called(window.satismeter, 'page', {
           userId: 'id',
+          anonymousId: 'anonymousId',
           name: 'Pricing',
           category: 'Product',
           properties: {
@@ -192,12 +214,15 @@ describe('SatisMeter', function() {
 
       it('should send group id and traits', function() {
         analytics.user().id('id');
+        analytics.user().anonymousId('anonymousId');
         analytics.group('groupId', {
           industry: 'Technology',
           employees: 2000
         });
+
         analytics.called(window.satismeter, 'group', {
           userId: 'id',
+          anonymousId: 'anonymousId',
           groupId: 'groupId',
           traits: {
             industry: 'Technology',
@@ -249,6 +274,7 @@ describe('SatisMeter - legacy setup', function() {
     describe('#initialize', function() {
       it('should call #load', function() {
         analytics.initialize();
+
         analytics.called(satismeter.load);
       });
     });
@@ -273,9 +299,12 @@ describe('SatisMeter - legacy setup', function() {
 
       it('should send token and user id', function() {
         analytics.identify('id');
+        var anonymousId = analytics.user().anonymousId();
+
         analytics.called(window.satismeter, {
           writeKey: options.token,
           userId: 'id',
+          anonymousId: anonymousId,
           traits: {},
           type: 'identify'
         });
@@ -283,9 +312,12 @@ describe('SatisMeter - legacy setup', function() {
 
       it('should send email', function() {
         analytics.identify('id', { email: 'email@example.com' });
+        var anonymousId = analytics.user().anonymousId();
+
         analytics.called(window.satismeter, {
           writeKey: options.token,
           userId: 'id',
+          anonymousId: anonymousId,
           traits: {
             email: 'email@example.com'
           },
@@ -295,9 +327,12 @@ describe('SatisMeter - legacy setup', function() {
 
       it('should send user name', function() {
         analytics.identify('id', { name: 'john doe' });
+        var anonymousId = analytics.user().anonymousId();
+
         analytics.called(window.satismeter, {
           writeKey: options.token,
           userId: 'id',
+          anonymousId: anonymousId,
           traits: {
             name: 'john doe'
           },
@@ -308,9 +343,12 @@ describe('SatisMeter - legacy setup', function() {
       it('should send signUpDate', function() {
         var now = new Date();
         analytics.identify('id', { createdAt: now });
+        var anonymousId = analytics.user().anonymousId();
+
         analytics.called(window.satismeter, {
           writeKey: options.token,
           userId: 'id',
+          anonymousId: anonymousId,
           traits: {
             createdAt: now
           },
@@ -325,9 +363,12 @@ describe('SatisMeter - legacy setup', function() {
           },
           language: 'en'
         });
+        var anonymousId = analytics.user().anonymousId();
+
         analytics.called(window.satismeter, {
           writeKey: options.token,
           userId: 'id',
+          anonymousId: anonymousId,
           traits: {
             translation: {
               FOLLOWUP: 'What can we improve'
@@ -346,12 +387,15 @@ describe('SatisMeter - legacy setup', function() {
 
       it('should send event name and properties', function() {
         analytics.user().id('id');
+        analytics.user().anonymousId('anonymousId');
         analytics.track('User Subscribed', {
           planId: 'Example Plan',
           planPrice: 2000
         });
+
         analytics.called(window.satismeter, 'track', {
           userId: 'id',
+          anonymousId: 'anonymousId',
           event: 'User Subscribed',
           properties: {
             planId: 'Example Plan',
@@ -368,11 +412,14 @@ describe('SatisMeter - legacy setup', function() {
 
       it('should send page name, category and properties', function() {
         analytics.user().id('id');
+        analytics.user().anonymousId('anonymousId');
         analytics.page('Product', 'Pricing', {
           customProperty: 'Example'
         });
+
         analytics.called(window.satismeter, 'page', {
           userId: 'id',
+          anonymousId: 'anonymousId',
           name: 'Pricing',
           category: 'Product',
           properties: {
@@ -396,12 +443,15 @@ describe('SatisMeter - legacy setup', function() {
 
       it('should send group id and traits', function() {
         analytics.user().id('id');
+        analytics.user().anonymousId('anonymousId');
         analytics.group('groupId', {
           industry: 'Technology',
           employees: 2000
         });
+
         analytics.called(window.satismeter, 'group', {
           userId: 'id',
+          anonymousId: 'anonymousId',
           groupId: 'groupId',
           traits: {
             industry: 'Technology',
