@@ -33,7 +33,8 @@ SatisMeter.prototype.initialize = function() {
       },
       function() {
         window.satismeter('load', {
-          writeKey: options.apiKey || options.token
+          writeKey: options.apiKey || options.token,
+          source: 'analytics.js'
         });
         self.ready();
       }
